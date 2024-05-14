@@ -96,7 +96,7 @@ class UAVDetector:
         x2 = width - right_padding
         y2 = height - bottom_padding
 
-        # Dikdörtgeni çiz
+        # Dikdörtgeni çiz.
         cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
         return frame
