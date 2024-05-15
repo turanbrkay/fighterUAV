@@ -6,4 +6,4 @@
 
 3- eğitim için negatif veriler de ekle. (air görselleri olsun ama uçak içermesin)
 
-4-
+4- clean_dataset klasöründeki verileri etiketle 
