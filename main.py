@@ -65,19 +65,24 @@ class UAVDetector:
                 frame_center_x = (x1 + x2) // 2
                 frame_center_y = (y1 + y2) // 2
 
-                # Çerçevenin merkeziyle çizgiyi çiz
-                cv2.line(frame, (frame_width // 2, frame_height // 2), (int(frame_center_x), int(frame_center_y)),(0, 255, 0), 2)
-                cv2.circle(frame, (int(frame_width // 2), int(frame_height // 2)), radius=3, color=(0, 255, 0), thickness=-1)
-                cv2.circle(frame, (int(frame_center_x), int(frame_center_y)), radius=3, color=(0, 255, 0), thickness=-1)
+                color = (0, 255, 0)  # Varsayılan renk yeşil
+                if self.isObjectFit(box, frame_width, frame_height):
+                    color = (0, 0, 255)  # Kırmızı
+
+                cv2.line(frame, (frame_width // 2, frame_height // 2), (int(frame_center_x), int(frame_center_y)),
+                         color, 2)
+                cv2.circle(frame, (int(frame_width // 2), int(frame_height // 2)), radius=3, color=color,
+                           thickness=-1)
+                cv2.circle(frame, (int(frame_center_x), int(frame_center_y)), radius=3, color=color, thickness=-1)
 
                 # target center coordinate
                 text = f'Target: ({frame_center_x}, {frame_center_y})'
                 cv2.putText(frame, text, (10, 55), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
-                            (0, 255, 0), 1)
+                            color, 1)
 
                 # detected target
-                cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-                cv2.putText(frame, label, (int(x1), int(y1 - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+                cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), color, 2)
+                cv2.putText(frame, label, (int(x1), int(y1 - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1)
 
         return frame
     def drawLockdownRectangle(self,frame):
@@ -126,6 +131,29 @@ class UAVDetector:
                     (255, 255, 255), font_thickness)
 
         return frame
+
+    def isObjectFit(self, box, frame_width, frame_height):
+        """
+        Eğer tespit edilen objenin yatay veya dikey uzunluğu frame'in yüzde 5'ine eşit veya büyükse True döner.
+        """
+        x1, y1, x2, y2 = box
+        box_width = x2 - x1
+        box_height = y2 - y1
+
+        if box_width >= 0.05 * frame_width or box_height >= 0.05 * frame_height:
+            return True
+        return False
+
+    def save_video(frames):
+        fps = 30
+        video_path = 'save_test.mp4'
+        fourcc = cv2.VideoWriter_fourcc(*'h264')
+        video_writer = cv2.VideoWriter(video_path, fourcc, fps, (600, 480))
+
+        for frame in frames:
+            video_writer.write(frame)
+
+        video_writer.release()
     def __call__(self):
         """
         kameramızı açarak aranan nesnenin nerede olduğunu hangi nesne olduğunu ve % kaç olasılıkla onun olduğunu yazıyoruz.
@@ -133,12 +161,11 @@ class UAVDetector:
 
         cap = self.get_video_capture()
 
-        out = cv2.VideoWriter("./output_video.mp4", cv2.VideoWriter_fourcc(*'MP4V'), int(cap.get(cv2.CAP_PROP_FPS)),
+        out = cv2.VideoWriter("./output_video.mp4", cv2.VideoWriter_fourcc(*'X264'), int(cap.get(cv2.CAP_PROP_FPS)),
                               (600, 800))
 
         #cap = self.get_video_capture()
         assert cap.isOpened()
-        threshold = 0.7
 
         while True:
             ret, frame = cap.read()
@@ -165,6 +192,8 @@ class UAVDetector:
             self.drawTimeText(frame, x)
 
             cv2.imshow('YOLOv8 Detection', frame)
+
+            self.save_video(frame)
             out.write(frame)
 
             if cv2.waitKey(5) & 0xFF == ord('q'):
@@ -175,7 +204,6 @@ class UAVDetector:
         cv2.destroyAllWindows()
 
 
-# yeni bir obje oluşturarak çalıştırıyoruz.
 
 detector = UAVDetector(video_path="./videos/video2.mp4", model_path='./runs/detect/train/weights/last.pt')
 detector()

@@ -1,6 +1,7 @@
 path: /ari/users/bturan/robotics/data # dataset root dir
 train: images/train  # train images (relative to 'path')
 val: images/val  # val images (relative to 'path')
+test: images/test
 
 # Classes
 names:
