@@ -47,4 +47,4 @@ sim_vehicle.py -L BIKF
 </details>
 
 
-<img alt="FlighGear Simulation" src="assets/flightgear_simulation.gif"> </img>
+<img alt="FlighGear Simulation" src="asserts/flightgear_simulation.gif"> </img>
