@@ -9,72 +9,123 @@
 4- clean_dataset klasöründeki verileri etiketle 
 
 
-Simülasyon başlatmak için yapılması gerekenler:
-1- Öncelikle flightgear uygulaması başlatılmalı bunun için öncelikle flightgear'i yükleyin
-2- Daha sonra flightgear uygulamasında mevcut olan airportlardan istediğini seçerek sitl'i başlatıyoruz
-3- /home/torres/ardupilot/Tools/autotest/fg_plane_view.sh --> bu file'ı çalıştırdığımızda ilk başta boş bir airport çıkabilir. Bunun çıkmaması için 
-txt ile dosyayı açarak airport kısmından istediğimiz airportun kodu ile değişim yapmalıyız.
-4- Daha sonra sitl uygulamamızı bu kodlu olan airport ile başlatacağız
-sim_vehicle.py -L BIKF
 
+# Project Title
 
+One Paragraph of project description goes here
 
+## Getting Started
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#SITL with Flightgear Simulator">SITL with Flightgear Simulator</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+### Prerequisites
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+What things you need to install the software and how to install them
 
 
 ## SITL with Flightgear Simulator
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+First, you need to install and launch the FlightGear application:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1. Download and install FlightGear from the [official website](https://www.flightgear.org/download/)
+2. Launch the application.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+ArduPilot comes pre-configured with several airports. The locations of these airports can be found in the file:  
+`..your_path/ardupilot/Tools/autotest/locations.txt`  
 
+You can choose any of these airports and load it into FlightGear. If you want to use an airport that is not listed, you will need to add the necessary information to the `locations.txt` file.
+
+
+
+For this project, we will use the airport code KSFO (San Francisco International Airport). First, we need to load this airport in FlightGear:
+
+1. Open the FlightGear application.
+2. Navigate to the `Airports` section and load KSFO (San Francisco International Airport).
+3. After loading the airport, you can close the application.
+
+Next, we need to modify the airport code in the configuration file:
+
+1. Navigate to `..your_path/ardupilot/Tools/autotest/fg_plane_view.sh`
+2. Open the file with a text editor (e.g., `nano` or `vim`).
+3. Find the line with the airport code and change it to KSFO:
+4. Save and close the file.
+5. Run the `.sh` file to start FlightGear with the new airport code:
+6. FlightGear will open and be ready for commands.
+
+After setting up FlightGear, we need to start the SITL simulation:
+
+1. Navigate to `..your_path/ardupilot/Tools/autotest/`
+2. Run the following command to start the simulation:
+    ```sh
+    sim_vehicle.py -v ArduPlane --console --map -L KSFO
+    ```
+3. The simulation will start, and you will be able to send MAVLink commands.
+
+To demonstrate, we will start a sample flight provided by ArduPilot:
+
+1. Load the waypoints from a sample mission:
+    ```sh
+   wp load `..your_path`/ardupilot/Tools/autotest/Generic_Missions/CMAC-circuit.txt
+    wp list
+    mode auto
+    arm throttle
+
+After these commands, the simulation will start, and you can proceed with the flight.
 
 <img src="asserts/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
+
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Maven](https://maven.apache.org/) - Dependency Management
+* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
+
