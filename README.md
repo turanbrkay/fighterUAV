@@ -37,7 +37,7 @@ sim_vehicle.py -L BIKF
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#SITL with Flightgear Simulator">SITL with Flightgear Simulator</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -47,4 +47,13 @@ sim_vehicle.py -L BIKF
 </details>
 
 
-<img alt="FlighGear Simulation" src="asserts/flightgear_simulation.gif"> </img>
+## SITL with Flightgear Simulator
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<img src="asserts/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
