@@ -1,22 +1,10 @@
-1- kaynaklardan görselleri bul. 
-
-
-2- yolov8'in kendi metodu ile augumentation işlemini gerçekleştir. (tek tek uğraşma)
-
-
-3- eğitim için negatif veriler de ekle. (air görselleri olsun ama uçak içermesin)
-
-4- clean_dataset klasöründeki verileri etiketle 
-
-
-
 # Advanced UAV Combat Challenge
 
 One Paragraph of project description goes here
 
 ### Contents:
 - [Getting Started](#getting-started)
-- [Train Custom Dataset](#train-custom-dataset)
+- [Custom Dataset Creation and Model Training with YOLOv8](#custom-dataset-creation-and-model-training-with-yolov8)
 - [SITL with Flightgear Simulator](#sitl-with-flightgear-simulator)
 
 ## Getting Started
@@ -28,9 +16,31 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 
-## Train Custom Dataset
- --- dataset train ve val şeklinde ikiye ayrılmalı val kısmı image sayısının %10-20 arasında içermelidir
- --- 
+## Custom Dataset Creation and Model Training with YOLOv8
+
+This guide walks you through creating a custom dataset, labeling the images, and training a YOLOv8 model.
+
+### 1. Collecting Images
+To create a custom dataset, you need to gather as many images as you want from internet sources (e.g., YouTube). The images should closely resemble scenarios that a UAV might encounter. You can achieve faster results by extracting frames from videos found on YouTube. I collected around 10,000 images and then increased this number using augmentation techniques.
+
+### 2. Labeling Images
+Use [CVAT.ai](https://cvat.ai/) to label your images. Proper labeling is crucial for the model to learn accurately.
+
+
+### 3. Data Augmentation
+Use data augmentation techniques to increase the diversity and size of your dataset. This helps improve the robustness of your model.
+
+### 4. Preparing Data
+
+- **Train**: Used to train the model. This data helps the model learn patterns and relationships.
+- **Validation**: Used to tune hyperparameters and assess the model’s performance during training. Helps prevent overfitting.
+- **Test**: Used for final evaluation after training. Provides an unbiased estimate of model performance on new, unseen data.
+
+<img src="assets/folderdesign.png" alt="folders" style="width: 30%; height: auto; display: block; margin: 0 auto;">
+
+
+
+
 
 ## SITL with Flightgear Simulator
 
@@ -81,7 +91,7 @@ To demonstrate, we will start a sample flight provided by ArduPilot:
 
 After these commands, the simulation will start, and you can proceed with the flight.
 
-<img src="asserts/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
+<img src="assets/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
 
 
 ## License
