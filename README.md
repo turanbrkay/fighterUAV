@@ -45,3 +45,6 @@ sim_vehicle.py -L BIKF
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
+
+<img alt="FlighGear Simulation" src="assets/flightgear_simulation.gif"> </img>
