@@ -1,0 +1,15 @@
+path: /ari/users/bturan/robotics/data # dataset root dir
+train: images/train  # train images (relative to 'path')
+val: images/val  # val images (relative to 'path')
+test: images/test
+# Classes
+names:
+  0: UAV
+
+translate: 0.5  # image translation (+/- fraction)
+scale: 0.3  # image scale (+/- gain)
+shear: 0.3  # image shear (+/- deg) from -0.5 to 0.5
+perspective: 0.1  # image perspective (+/- fraction), range 0-0.001
+flipud: 0.4  # image flip up-down (probability)
+fliplr: 0.3  # image flip left-right (probability)
+mosaic: 0.1  # image mosaic (probability)
