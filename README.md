@@ -1,47 +1,106 @@
-1- kaynaklardan görselleri bul. 
+# Advanced UAV Combat Challenge
+
+One Paragraph of project description goes here
+
+### Contents:
+- [Getting Started](#getting-started)
+- [Custom Dataset Creation and Model Training with YOLOv8](#custom-dataset-creation-and-model-training-with-yolov8)
+- [SITL with Flightgear Simulator](#sitl-with-flightgear-simulator)
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
 
 
-2- yolov8'in kendi metodu ile augumentation işlemini gerçekleştir. (tek tek uğraşma)
+## Custom Dataset Creation and Model Training with YOLOv8
+
+This guide walks you through creating a custom dataset, labeling the images, and training a YOLOv8 model.
+
+### 1. Collecting Images
+To create a custom dataset, you need to gather as many images as you want from internet sources (e.g., YouTube). The images should closely resemble scenarios that a UAV might encounter. You can achieve faster results by extracting frames from videos found on YouTube. I collected around 10,000 images and then increased this number using augmentation techniques.
+
+### 2. Labeling Images
+Use [CVAT.ai](https://cvat.ai/) to label your images. Proper labeling is crucial for the model to learn accurately.
 
 
-3- eğitim için negatif veriler de ekle. (air görselleri olsun ama uçak içermesin)
+### 3. Data Augmentation
+Use data augmentation techniques to increase the diversity and size of your dataset. This helps improve the robustness of your model.
 
-4- clean_dataset klasöründeki verileri etiketle 
+### 4. Preparing Data
 
+- **Train**: Used to train the model. This data helps the model learn patterns and relationships.
+- **Validation**: Used to tune hyperparameters and assess the model’s performance during training. Helps prevent overfitting.
+- **Test**: Used for final evaluation after training. Provides an unbiased estimate of model performance on new, unseen data.
 
-Simülasyon başlatmak için yapılması gerekenler:
-1- Öncelikle flightgear uygulaması başlatılmalı bunun için öncelikle flightgear'i yükleyin
-2- Daha sonra flightgear uygulamasında mevcut olan airportlardan istediğini seçerek sitl'i başlatıyoruz
-3- /home/torres/ardupilot/Tools/autotest/fg_plane_view.sh --> bu file'ı çalıştırdığımızda ilk başta boş bir airport çıkabilir. Bunun çıkmaması için 
-txt ile dosyayı açarak airport kısmından istediğimiz airportun kodu ile değişim yapmalıyız.
-4- Daha sonra sitl uygulamamızı bu kodlu olan airport ile başlatacağız
-sim_vehicle.py -L BIKF
+<img src="assets/folderdesign.png" alt="folders" style="width: 30%; height: auto; display: block; margin: 0 auto;">
 
 
 
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+
+## SITL with Flightgear Simulator
+
+First, you need to install and launch the FlightGear application:
+
+1. Download and install FlightGear from the [official website](https://www.flightgear.org/download/)
+2. Launch the application.
+
+ArduPilot comes pre-configured with several airports. The locations of these airports can be found in the file:  
+`..your_path/ardupilot/Tools/autotest/locations.txt`  
+
+You can choose any of these airports and load it into FlightGear. If you want to use an airport that is not listed, you will need to add the necessary information to the `locations.txt` file.
+
+
+
+For this project, we will use the airport code KSFO (San Francisco International Airport). First, we need to load this airport in FlightGear:
+
+1. Open the FlightGear application.
+2. Navigate to the `Airports` section and load KSFO (San Francisco International Airport).
+3. After loading the airport, you can close the application.
+
+Next, we need to modify the airport code in the configuration file:
+
+1. Navigate to `..your_path/ardupilot/Tools/autotest/fg_plane_view.sh`
+2. Open the file with a text editor (e.g., `nano` or `vim`).
+3. Find the line with the airport code and change it to KSFO:
+4. Save and close the file.
+5. Run the `.sh` file to start FlightGear with the new airport code:
+6. FlightGear will open and be ready for commands.
+
+After setting up FlightGear, we need to start the SITL simulation:
+
+1. Navigate to `..your_path/ardupilot/Tools/autotest/`
+2. Run the following command to start the simulation:
+    ```sh
+    sim_vehicle.py -v ArduPlane --console --map -L KSFO
+    ```
+3. The simulation will start, and you will be able to send MAVLink commands.
+
+To demonstrate, we will start a sample flight provided by ArduPilot:
+
+1. Load the waypoints from a sample mission:
+    ```sh
+   wp load `..your_path`/ardupilot/Tools/autotest/Generic_Missions/CMAC-circuit.txt
+    wp list
+    mode auto
+    arm throttle
+
+After these commands, the simulation will start, and you can proceed with the flight.
+
+<img src="assets/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
+
