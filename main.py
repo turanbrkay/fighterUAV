@@ -156,7 +156,7 @@ class UAVDetector:
         video_writer.release()
     def __call__(self):
         """
-        kameramızı açarak aranan nesnenin nerede olduğunu hangi nesne olduğunu ve % kaç olasılıkla onun olduğunu yazıyoruz.
+        kameramızı açarak, aranan nesnenin nerede olduğunu hangi nesne olduğunu ve % kaç olasılıkla onun olduğunu yazıyoruz.
         """
 
         cap = self.get_video_capture()
