@@ -16,6 +16,7 @@ One Paragraph of project description goes here
 
 ### Contents:
 - [Getting Started](#getting-started)
+- [Train Custom Dataset](#train-custom-dataset)
 - [SITL with Flightgear Simulator](#sitl-with-flightgear-simulator)
 
 ## Getting Started
@@ -26,6 +27,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
+
+## Train Custom Dataset
+ --- dataset train ve val şeklinde ikiye ayrılmalı val kısmı image sayısının %10-20 arasında içermelidir
+ --- 
 
 ## SITL with Flightgear Simulator
 
