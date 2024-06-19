@@ -48,7 +48,10 @@ python3 yolov8Train.py
 ```
 This will initiate the training process, during which the model will learn from the training data, validate using the validation data, and be evaluated against the test data. By carefully adjusting the script settings, you can optimize the performance of your model to suit your unique dataset and objectives.
 
-<img src="assets/traindatas.jpg" alt="folders" style="width: 50%; height: auto; display: block; margin: 0 auto;">
+<p float="left">
+  <img src="assets/traindatas.jpg" alt="folders" width="45%" />
+  <img src="assets/trainterminal.png" alt="trainterminal" width="45%" /> 
+</p>
 
 
 
