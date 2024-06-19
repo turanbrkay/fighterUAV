@@ -54,6 +54,7 @@ This will initiate the training process, during which the model will learn from 
 </p>
 
 
+This project utilized [ITU UHeM](https://www.uhem.itu.edu.tr/) servers for training the model. Therefore, I would like to extend our deepest gratitude to the ITU UHeM authorities for their invaluable support. Their infrastructure played a crucial role in facilitating our research and development efforts, enabling us to effectively achieve our goals.
 
 
 
