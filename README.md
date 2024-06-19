@@ -18,7 +18,9 @@ What things you need to install the software and how to install them
 
 ## Custom Dataset Creation and Model Training with YOLOv8
 
-This guide walks you through creating a custom dataset, labeling the images, and training a YOLOv8 model.
+This guide walks you through creating a custom dataset, labeling the images, and training a YOLOv8 model.  
+**(All the files used under this section are located in the `/train` directory.)**
+
 
 ### 1. Collecting Images
 To create a custom dataset, you need to gather as many images as you want from internet sources (e.g., YouTube). The images should closely resemble scenarios that a UAV might encounter. You can achieve faster results by extracting frames from videos found on YouTube. I collected around 10,000 images and then increased this number using augmentation techniques.
@@ -32,11 +34,22 @@ Use data augmentation techniques to increase the diversity and size of your data
 
 ### 4. Preparing Data
 
-- **Train**: Used to train the model. This data helps the model learn patterns and relationships.
-- **Validation**: Used to tune hyperparameters and assess the model’s performance during training. Helps prevent overfitting.
-- **Test**: Used for final evaluation after training. Provides an unbiased estimate of model performance on new, unseen data.
+- **train**: Used to train the model. This data helps the model learn patterns and relationships.
+- **val**: Used to tune hyperparameters and assess the model’s performance during training. Helps prevent overfitting.
+- **test**: Used for final evaluation after training. Provides an unbiased estimate of model performance on new, unseen data.
 
-<img src="assets/folderdesign.png" alt="folders" style="width: 30%; height: auto; display: block; margin: 0 auto;">
+  <img src="assets/folderdesign.png" alt="folders" style="width: 40%; height: auto; display: block; margin: 0 auto;">
+The `custom.yaml` file must point to the directories of the datasets you created. Make sure to update the paths in the file with the paths to your dataset. Additionally, you can configure the augmentation methods you want to use within this file. For example, you can specify different techniques such as flipping, scaling, and rotating to enhance your dataset. This configuration is crucial for ensuring that the training, validation, and test datasets are correctly referenced and that the data augmentation is properly applied.
+
+Once you have completed the above steps, you can run the `yolov8Train.py` Python script. This script includes various configurations such as the model to be used, the GPUs that will be utilized, and the parameters the model will employ. You can adjust these settings according to your specific requirements. After configuring the script to your liking, you can execute it with the following command and wait for the model to be trained.
+
+```sh
+python3 yolov8Train.py
+```
+This will initiate the training process, during which the model will learn from the training data, validate using the validation data, and be evaluated against the test data. By carefully adjusting the script settings, you can optimize the performance of your model to suit your unique dataset and objectives.
+
+<img src="assets/traindatas.jpg" alt="folders" style="width: 50%; height: auto; display: block; margin: 0 auto;">
+
 
 
 
