@@ -6,6 +6,7 @@ One Paragraph of project description goes here
 - [Getting Started](#getting-started)
 - [Custom Dataset Creation and Model Training with YOLOv8](#custom-dataset-creation-and-model-training-with-yolov8)
 - [SITL with Flightgear Simulator](#sitl-with-flightgear-simulator)
+- [Multi-Vehicle Simulation with FlightGear](#multi-vehicle-simulation-with-flightgear)
 
 ## Getting Started
 
@@ -109,6 +110,9 @@ To demonstrate, we will start a sample flight provided by ArduPilot:
 After these commands, the simulation will start, and you can proceed with the flight.
 
 <img src="assets/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
+
+
+## Multi-Vehicle Simulation with FlightGear
 
 
 ## License
