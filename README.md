@@ -113,6 +113,17 @@ After these commands, the simulation will start, and you can proceed with the fl
 
 
 ## Multi-Vehicle Simulation with FlightGear
+Checkout the PX4 branch that supports multiple vehicles (at ThunderFly-aerospace):
+sh
+
+git clone https://github.com/ThunderFly-aerospace/PX4Firmware.git
+  cd PX4Firmware
+  git checkout flightgear-multi
+
+Build the PX4 Firmware using the standard toolchain (with FlightGear installed).
+  make px4_sitl_default
+
+
 
 
 ## License
