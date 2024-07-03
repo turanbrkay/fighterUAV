@@ -116,12 +116,12 @@ After these commands, the simulation will start, and you can proceed with the fl
 Checkout the PX4 branch that supports multiple vehicles (at ThunderFly-aerospace):
 sh
 
-git clone https://github.com/ThunderFly-aerospace/PX4Firmware.git
-  cd PX4Firmware
-  git checkout flightgear-multi
+sim_vehicle.py -v ArduPlane --console -L KSFO --instance 2
+bu komut ile iki tane ihayı farklı tcp portları ile yönetebiliriz ama missionplanner üzerinde tek göremiyorum.
 
-Build the PX4 Firmware using the standard toolchain (with FlightGear installed).
-  make px4_sitl_default
+
+
+  
 
 
 
