@@ -13,7 +13,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Before getting started, ensure that you have the following software installed on your system:
+
+- **Python 3.8+**: You will need Python installed to run the training scripts. You can download it from the [official Python website](https://www.python.org/downloads/).
+- **YOLOv8**: Install the necessary YOLOv8 package by running:
+
+  ```sh
+  pip install ultralytics
+- **OpenCV**: This library is needed for image processing tasks
+
+  ```sh
+    pip install opencv-python
+- **FlightGear**: For the simulation part of the project. Download FlightGear from the [official website](https://www.flightgear.org/download/) and follow the installation instructions.
 
 
 ## Custom Dataset Creation and Model Training with YOLOv8
@@ -111,18 +122,5 @@ After these commands, the simulation will start, and you can proceed with the fl
 <img src="assets/flightgear_simulation.gif" alt="FlightGear Simulation" style="width: 60%; height: auto; display: block; margin: 0 auto;">
 
 
-  
 
-
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
